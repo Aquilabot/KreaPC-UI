@@ -1,0 +1,40 @@
+<div class="landing-container">
+  <h1 style="text-align: center">PC PART PERUVIAN PICKER</h1>
+  <p>Welcome to AI PC Builder, your ultimate destination for creating the perfect PC build tailored to your unique needs. Our platform leverages advanced artificial intelligence to generate optimal PC configurations based on your preferences, budget, and requirements. We ensure the accuracy and compatibility of each component through our custom API validation, guaranteeing a seamless and reliable build experience.</p>
+  <form class="example-form" [formGroup]="promptForm">
+    <h3>Write a description of your ideal PC, remember include why u needed and what work u expect to do</h3>
+    <div style="display: flex;flex-direction: column">
+      <label>Talk to AI</label>
+      <input type="text" placeholder="Prompt" formControlName="prompt">
+    </div>
+    <div>
+      <label>Enable Options</label>
+      <input type="checkbox" placeholder="d " formControlName="enableOptions">
+      <p>This can help u to get the best options for the pc build , if u doesnt have any knowledge u can only do the prompt</p>
+      @if (promptForm.get("enableOptions")?.value){
+
+        <p>Primary Use Case (Select all that apply)</p>
+        <input type="radio" id="gaming" formControlName="gaming" value="gaming">
+        <label for="gaming">Gaming</label><br>
+        <input type="radio" id="officeOrSchool" formControlName="officeOrSchool" value="officeOrSchool">
+        <label for="officeOrSchool">Office/School Work</label><br>
+        <input type="radio" id="contentCreation" formControlName="contentCreation" value="contentCreation">
+        <label for="contentCreation">Content Creation (Video Editing, 3D Modeling, etc.)</label><br>
+        <input type="radio" id="streaming" formControlName="streaming" value="streaming">
+        <label for="streaming">Streaming</label><br>
+        <input type="radio" id="generalUse" formControlName="generalUse" value="generalUse">
+        <label for="generalUse">General Use</label>
+        <br>
+
+        <p>Please select your age:</p>
+        <input type="radio" id="age1" name="age" value="30">
+        <label for="age1">0 - 30</label><br>
+        <input type="radio" id="age2" name="age" value="60">
+        <label for="age2">31 - 60</label><br>
+        <input type="radio" id="age3" name="age" value="100">
+        <label for="age3">61 - 100</label><br><br>
+      }
+    </div>
+    <button (click)="createPcBuild()" [disabled]="!promptForm.valid">Generate Build</button>
+  </form>
+</div>
